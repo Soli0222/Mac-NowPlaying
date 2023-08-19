@@ -2,6 +2,22 @@
 
 This script allows you to copy the currently playing song information on your Mac to the clipboard. It's designed to work with various music player applications. By default, it is set up to work with the "Swinsian" music player, but you can easily configure it to work with other supported applications as well.
 
+## Usage Example
+
+When you run this program and the retrieved track information is as follows:
+
+- Track Name: Catch the Breeze (樋口円香ver.)
+- Artist: 樋口円香 (土屋李央)
+
+The following text will be copied to your clipboard:
+
+```plaintext
+Catch the Breeze (樋口円香ver.) / 樋口円香 (土屋李央)
+#NowPlaying
+```
+
+This can be a useful way to quickly share your currently playing track on various platforms.
+
 ## Supported Applications
 
 The script is capable of retrieving the current track information from various music player applications. To configure the script for a specific music player, replace `<ApplicationName>` in the script below with the name of the desired music player application:
@@ -88,7 +104,7 @@ Follow these steps to use the script:
    python main.py
    ```
 
-If the configured music player is running and playing a track, the script will retrieve the track's name, artist, and album, and then copy this information to your clipboard.
+If the configured music player is running and playing a track, the script will retrieve the track's name and artist, and then copy this information to your clipboard.
 
 ## Configuration
 
