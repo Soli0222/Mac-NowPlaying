@@ -21,7 +21,6 @@ def get_current_track_info():
     if "missing value" in stdout.decode('utf-8').strip():
         return None
     
-    # 中括弧を除去する代わりに、split()関数で余分な空白文字を削除する
     track_name, artist_name, album_name = [s.strip() for s in stdout.decode('utf-8').split(',', 2)]
 
     return track_name, artist_name, album_name
