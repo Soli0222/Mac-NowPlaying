@@ -1,6 +1,12 @@
 import subprocess
 import pyperclip
 
+import os
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+import requests
+
 def get_current_track_info():
     script = '''
         tell application "Swinsian"
@@ -26,5 +32,29 @@ def get_current_track_info():
     return track_name, artist_name, album_name
 
 if __name__ == "__main__":
+    load_dotenv(verbose=True)
+    dotenv_path = join(dirname(__file__), '.env')
+    load_dotenv(dotenv_path)
+
     track_name, artist_name, album_name = get_current_track_info()
-    pyperclip.copy(track_name + " / " + artist_name + "\n" + album_name+ "\n#NowPlaying #PsrPlaying")
+    text = track_name + " / " + artist_name + "\n" + album_name+ "\n#NowPlaying #PsrPlaying"
+    
+    if os.environ.get("SHARE_MISSKEY") == "True":
+        HOST = os.environ.get("MISSKEY_HOST")
+        TOKEN = os.environ.get("MISSKEY_TOKEN")
+
+        url = "https://"+HOST+"/api/notes/create"
+
+        headers = {
+            "Content-Type": "application/json",
+        }
+
+        data = {
+            "i": TOKEN,
+            "text": text,
+        }
+
+        response = requests.post(url, headers=headers, json=data)
+
+    else:
+        pyperclip.copy(text)
