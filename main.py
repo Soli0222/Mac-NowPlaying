@@ -27,4 +27,4 @@ def get_current_track_info():
 
 if __name__ == "__main__":
     track_name, artist_name, album_name = get_current_track_info()
-    pyperclip.copy(track_name + " / " + artist_name + "\n#NowPlaying")
+    pyperclip.copy(track_name + " / " + artist_name + "\n" + album_name+ "\n#NowPlaying #PsrPlaying")
