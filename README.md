@@ -75,40 +75,28 @@ Follow these steps to use the script:
    cd Mac-NowPlaying
    ```
 
-3. Create a virtual environment (optional but recommended):
+3. Edit the script to configure the target music player application:
 
-   ```sh
-   python -m venv venv
-   ```
-
-4. Activate the virtual environment:
-
-   ```sh
-   source venv/bin/activate
-   ```
-
-5. Install the required libraries:
-
-   ```sh
-   pip install -r requirements.txt
-   ```
-
-6. Edit the script to configure the target music player application:
-
-   - Open `main.py` in a text editor.
+   - Open `main.go` in a text editor.
    - Find the `<ApplicationName>` placeholder and replace it with the name of the music player you want to use.
 
-7. Run the script:
+4. Run the script:
 
    ```sh
-   python main.py
+   go run main.go
+   ```
+
+5. Build the script:
+
+   ```sh
+   go build
    ```
 
 If the configured music player is running and playing a track, the script will retrieve the track's name and artist, and then copy this information to your clipboard.
 
 ## Configuration
 
-To configure the script for a different music player application, open the `main.py` file and replace the `<ApplicationName>` placeholder with the actual name of the music player you want to use. Make sure to follow the same syntax and structure as provided in the script.
+To configure the script for a different music player application, open the `main.go` file and replace the `<ApplicationName>` placeholder with the actual name of the music player you want to use. Make sure to follow the same syntax and structure as provided in the script.
 
 ## Disclaimer
 
