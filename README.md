@@ -1,103 +1,75 @@
-# Mac Now Playing Clipboard Copy Script
+# MacNowPlaying (mnp)
 
-This script allows you to copy the currently playing song information on your Mac to the clipboard. It's designed to work with various music player applications. By default, it is set up to work with the "Swinsian" music player, but you can easily configure it to work with other supported applications as well.
+This tool allows you to share your currently playing track information in various ways. You can display the track information, copy it to the clipboard, or post it directly to social media platforms like Twitter and Misskey.
 
-## Usage Example
+By setting the environment variable `MNP_APP_NAME`, you can retrieve information from any application. If the environment variable `MNP_APP_NAME` is not set, the default application name "Swinsian" will be used.
 
-When you run this program and the retrieved track information is as follows:
+## Installation
 
-- Track Name: Catch the Breeze (樋口円香ver.)
-- Artist: 樋口円香 (土屋李央)
+You can run the program using the pre-built binary without needing to build the source code.
+
+1. Download the latest binary for your OS from the [releases page](https://github.com/Soli0222/Mac-NowPlaying/releases).
+2. Extract the downloaded binary and make it executable (if necessary).
+
+   ```bash
+   chmod +x mnp
+   ```
+
+3. Move it to a directory in your PATH or use it directly as a command.
+
+## Usage
+
+### Display the Current Track Information
+
+The `nowplaying` command retrieves and displays the current track information from your music player. It also copies the track information to the clipboard for easy sharing.
+
+```sh
+# Display the current track information
+nowplaying
+```
+
+### Post the Currently Playing Track to Twitter
+
+The `tweet` command allows you to share your currently playing track directly to Twitter. It opens a web browser with a pre-filled tweet containing the track information.
+
+```sh
+# Post the currently playing track to Twitter
+tweet
+```
+
+### Post the Currently Playing Track to Misskey
+
+The `misskey` command allows you to share your currently playing track directly to Misskey. You need to configure the command by setting the environment variables `MISSKEY_HOST` and `MISSKEY_TOKEN`.
+
+```sh
+# Post the currently playing track to Misskey
+export MISSKEY_HOST=your.misskey.server.tld
+export MISSKEY_TOKEN=your_access_token
+misskey
+```
+
+## Environment Variables
+
+- `MNP_APP_NAME`: The name of the application to retrieve track information from. If not set, the default application name "Swinsian" will be used.
+- `MISSKEY_HOST`: The host of your Misskey instance.
+- `MISSKEY_TOKEN`: Your access token for Misskey.
+
+## Example
+
+When you run the `nowplaying` command and the retrieved track information is as follows:
+
+- Track Name: 灼熱にて純情(wii-wii-woo)
+- Artist: 星街すいせい
+- Album Name: Specter
 
 The following text will be copied to your clipboard:
 
 ```plaintext
-Catch the Breeze (樋口円香ver.) / 樋口円香 (土屋李央)
-#NowPlaying
+灼熱にて純情(wii-wii-woo) / 星街すいせい
+Specter
+#NowPlaying #PsrPlaying
 ```
 
-This can be a useful way to quickly share your currently playing track on various platforms.
+## License
 
-## Supported Applications
-
-The script is capable of retrieving the current track information from various music player applications. To configure the script for a specific music player, replace `<ApplicationName>` in the script below with the name of the desired music player application:
-
-```applescript
-tell application "<ApplicationName>"
-    if it is running then
-        if player state is playing then
-            set track_name to name of current track
-            set artist_name to artist of current track
-            set album_name to album of current track
-            return {track_name, artist_name, album_name}
-        end if
-    end if
-end tell
-```
-
-Replace `<ApplicationName>` with the exact name of the music player you want to use, as it appears in the application's scripting dictionary.
-
-Here are a few examples of how you might replace `<ApplicationName>` for different music player applications:
-
-- For Swinsian:
-
-  ```applescript
-  tell application "Swinsian"
-  ```
-
-- For iTunes:
-
-  ```applescript
-  tell application "iTunes"
-  ```
-
-- For Spotify:
-
-  ```applescript
-  tell application "Spotify"
-  ```
-
-And so on for any other supported music player application you wish to use.
-
-## How to Use
-
-Follow these steps to use the script:
-
-1. Clone the repository:
-
-   ```sh
-   git clone https://github.com/Soli0222/Mac-NowPlaying.git
-   ```
-
-2. Change into the cloned directory:
-
-   ```sh
-   cd Mac-NowPlaying
-   ```
-
-3. Edit the script to configure the target music player application:
-
-   - Open `main.go` in a text editor.
-   - Find the `<ApplicationName>` placeholder and replace it with the name of the music player you want to use.
-
-4. Run the script:
-
-   ```sh
-   go run main.go
-   ```
-
-5. Build the script:
-
-   ```sh
-   go build
-   ```
-
-If the configured music player is running and playing a track, the script will retrieve the track's name and artist, and then copy this information to your clipboard.
-
-## Configuration
-
-To configure the script for a different music player application, open the `main.go` file and replace the `<ApplicationName>` placeholder with the actual name of the music player you want to use. Make sure to follow the same syntax and structure as provided in the script.
-
-## Disclaimer
-
-This script is provided as-is and may require adjustments to work with certain music player applications. The effectiveness of the script may depend on updates and changes made to the music player software.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
