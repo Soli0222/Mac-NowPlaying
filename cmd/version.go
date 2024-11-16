@@ -21,7 +21,7 @@ Usage examples:
   # Print the version number
   version`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("version 1.0.0")
+		fmt.Println("version 1.0.1")
 	},
 }
 
